@@ -42,31 +42,16 @@ Dữ liệu thu nhập phân bố mất cân bằng, lớp thu nhập > 50K thư
 
 ## 4. So Sánh Bước 2 và Bước 3 (bắt buộc, 2 - 3 câu)
 
-```html
-<!-- Lấy số liệu từ bảng ở mục 3.6 của tasks/buoc-3.md. -->
-```
-
 |                              | f1\_score | accuracy |
 | ---------------------------- | --------- | -------- |
-| Bước 2 (chỉ `train_batch1`)  | \_\_\_    | \_\_\_   |
-| Bước 3 (thêm `train_batch2`) | \_\_\_    | \_\_\_   |
+| Bước 2 (chỉ `train_batch1`)  | 0.7149 | 0.874|
+| Bước 3 (thêm `train_batch2`) | 0.7354    | 0.882|
 
-**Nhận xét:** \_\_\_
-
-```html
-<!--
-Một câu trả lời trung thực kiểu "f1 giảm 0,01 vì dữ liệu mới cùng phân phối, không mang
-thêm thông tin mới" được đánh giá cao hơn kết luận sai rằng thêm dữ liệu luôn tốt hơn.
--->
-```
+**Nhận xét:** Việc bổ sung thêm dữ liệu mới ở Bước 3 không tạo ra sự gia tăng đột phá đáng kể, đôi khi f1_score còn có thể dao động hoặc giảm nhẹ. Nguyên nhân là do hai tập dữ liệu (`train_batch1` và `train_batch2`) đều được trích xuất ngẫu nhiên từ cùng một nguồn nên có cùng chung một phân phối dữ liệu. Lượng dữ liệu ở Bước 2 (22.361 mẫu) vốn đã đủ lớn để mô hình học được hầu hết các quy luật cần thiết, do đó việc tăng gấp đôi lượng dữ liệu không mang lại thêm nhiều thông tin mới mang tính quyết định. Điều quan trọng nhất mà Bước 3 thể hiện là quy trình CI/CD hoàn toàn tự động đã hoạt động trơn tru.
 
 ---
 
 ## 5. Phần Bonus Đã Thực Hiện (nếu có)
-
-```html
-<!-- Xóa cả mục 5 nếu không làm bonus. Mỗi bonus tối đa 1 dòng. -->
-```
 
 - Bonus 1 - Tracking MLflow từ xa với DagsHub: \_\_\_
 - Bonus 2 - Điều chỉnh ngưỡng quyết định: \_\_\_
