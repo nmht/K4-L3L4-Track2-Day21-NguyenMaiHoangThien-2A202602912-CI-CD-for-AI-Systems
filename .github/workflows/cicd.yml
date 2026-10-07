@@ -101,5 +101,10 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             sudo systemctl restart income-api
-            sleep 5
-            curl -f http://localhost:8080/healthz || exit 1
+            for i in $(seq 1 12); do
+              if curl -sf http://localhost:8080/healthz; then exit 0; fi
+              sleep 5
+            done
+            sudo systemctl status income-api --no-pager || true
+            sudo journalctl -u income-api -n 50 --no-pager || true
+            exit 1
